@@ -3,9 +3,8 @@
 
 import sys
 
-from insanities.web.core import RequestHandler
 from webob.exc import HTTPException
-from insanities.http import Response
+from insanities.web.http import Response
 from debug_dj import technical_500_response
 
 import logging
