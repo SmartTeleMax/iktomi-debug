@@ -1,0 +1,16 @@
+*.pyc
+*.pyo
+.DS_Store
+*~
+.ropeproject
+*.*.swp
+.swp
+*.swo
+build
+dist
+*.egg-info
+pip-log.txt
+venv
+*.db
+*.orig
+MANIFEST
