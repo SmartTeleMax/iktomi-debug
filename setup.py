@@ -16,7 +16,7 @@ setup(
     ],
     author="Harut Dagesyan",
     author_email="yes@harutune.name",
-    description="Simple Django-style web output of debug information for insanities.",
+    description="Simple Django-style debugger for insanities.",
     license="MIT",
     keywords="debug web",
 )
