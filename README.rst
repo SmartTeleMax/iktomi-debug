@@ -1,5 +1,5 @@
 ============
-INSANE_DEBUG
+INSDEBUG
 ============
 
 Simple debugger for insanities, based on Django debug.
@@ -7,7 +7,7 @@ Simple debugger for insanities, based on Django debug.
 Usage
 =====
 
-When ``insanities`` is used with ``mage``, create ``manage_local.py`` with following contents::
+Create ``manage_local.py`` with following contents::
 
     #!./venv/bin/python
     from manage import run

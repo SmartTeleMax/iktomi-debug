@@ -4,7 +4,7 @@
 import sys
 
 from webob.exc import HTTPException
-from insanities.web.http import Response
+from webob import Response
 from debug_dj import technical_500_response
 
 import logging
