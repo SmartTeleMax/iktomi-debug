@@ -15,7 +15,7 @@ setup(
     ],
     author="Harut Dagesyan",
     author_email="yes@harutune.name",
-    description="Simple Django-style debugger for insanities.",
+    description="Simple Django-style debugger for iktomi.",
     url='http://github.com/SmartTeleMax/iktomi-debug/',
     license="MIT",
     keywords="debug web",
