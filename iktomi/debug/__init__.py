@@ -5,11 +5,13 @@ import sys
 
 from webob.exc import HTTPException
 from webob import Response
+from iktomi import web
 from debug_dj import technical_500_response
 
 import logging
 logger = logging.getLogger(__name__)
 
+@web.request_filter
 def debug(env, data, next_handler):
     try:
         return next_handler(env, data)

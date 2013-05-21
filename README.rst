@@ -1,22 +1,16 @@
 ============
-INSDEBUG
+iktomi.debug
 ============
 
-Simple debugger for insanities, based on Django debug.
+Simple debugger for iktomi, based on Django debug.
 
 Usage
 =====
 
-Create ``manage_local.py`` with following contents::
+Prepend debug handler to your app::
 
-    #!./venv/bin/python
-    from manage import run
-    from app import app as old_app
-    from insane_debug import debug
-    from insanities import web
+    from iktomi.debug import debug
 
-    app = web.handler(debug) | old_app
+    app = debug | old_app
 
-    if __name__ == '__main__':
-        run(app)
-
+Caution! Do not use on production!
