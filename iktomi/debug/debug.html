@@ -22,7 +22,7 @@
     .vars { margin:5px 0 2px 40px; }
     .vars td, table.req td { font-family:monospace; }
     table td.code { width:100%; }
-    table td.code div { overflow:hidden; }
+    table td.code div { overflow:hidden; white-space: pre; font-family: Monospace;}
     table.source th { color:#666; }
     table.source td { font-family:monospace; white-space:pre; border-bottom:1px solid #eee; }
     ul.traceback { list-style-type:none; }
@@ -194,7 +194,7 @@
                   {% for var in frame.vars|sort %}
                     <tr>
                       <td>{{ var.0|escape }}</td>
-                      <td class="code"><div>{{ var.1|pprint|escape }}</div></td>
+                      <td class="code"><div>{{ pprint(var.1)|escape }}</div></td>
                     </tr>
                   {% endfor %}
                 </tbody>

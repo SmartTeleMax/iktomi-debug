@@ -2,6 +2,8 @@ import os
 import re
 import sys
 import datetime
+from pprint import PrettyPrinter
+from StringIO import StringIO
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -27,6 +29,29 @@ def technical_500_response(env, exc_type, exc_value, tb):
     return reporter.get_traceback_html()
 
 
+class UnicodePrettyPrinter(PrettyPrinter):
+    def format(self, *args, **kwargs):
+        repr_, readable, recursive = PrettyPrinter.format(self, *args, **kwargs)
+        if repr_:
+            if repr_[0] in ('"', "'"):
+                repr_ = repr_.decode('string_escape')
+            elif repr_[0:2] in ("u'", 'u"'):
+                repr_ = repr_.decode('unicode_escape').encode(sys.stdout.encoding or 'utf-8')
+        return repr_, readable, recursive
+
+def unicode_pprint_tostring(obj, indent=2, width=80, depth=None):
+    stream = StringIO()
+    printer = UnicodePrettyPrinter(stream=stream, indent=indent, width=width, depth=depth)
+    printer.pprint(obj)
+    return stream.getvalue().decode('utf-8')
+
+def pprint(value):
+    try:
+        return unicode_pprint_tostring(value)
+    except Exception:
+        return "<unprintable value>"
+
+
 class ExceptionReporter:
     """
     A class to organize and coordinate reporting on exceptions.
@@ -36,6 +61,7 @@ class ExceptionReporter:
         self.exc_type = exc_type
         self.exc_value = exc_value
         self.tb = tb
+
 
     def get_traceback_html(self):
         "Return HTML code for traceback."
@@ -65,6 +91,7 @@ class ExceptionReporter:
             'sys_version_info': '%d.%d.%d' % sys.version_info[0:3],
             'server_time': datetime.datetime.now(),
             'sys_path' : sys.path,
+            'pprint': pprint,
         }
 
         return get_template().render(c)
